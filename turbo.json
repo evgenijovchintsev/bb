@@ -844,6 +844,12 @@
       // variables, so without these they start unauthenticated.
       "passThroughEnv": ["CLAUDE_CODE_OAUTH_TOKEN", "BB_CLAUDE_CODE_EXECUTABLE"]
     },
+    "portable:win": {
+      "dependsOn": ["build"],
+      "cache": false,
+      "passThroughEnv": ["npm_config_cache"],
+      "outputs": []
+    },
     "smoke:tarball": {
       "dependsOn": ["build"],
       "cache": false,

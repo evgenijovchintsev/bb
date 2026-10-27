@@ -85,6 +85,26 @@ Or set the policy once for all global installs:
 npm config set allow-scripts=better-sqlite3,node-pty,@parcel/watcher --location=user
 ```
 
+### Portable zip (Windows x64)
+
+On any machine that has npm and network access, assemble a self-contained
+Windows x64 zip that needs no Node.js or npm on the target machine:
+
+```bash
+pnpm exec turbo run portable:win --filter=bb-app
+```
+
+The task packs the `bb-app` tarball, installs it with `--ignore-scripts`
+(the published dependency tarballs already carry win32-x64 binaries for
+`better-sqlite3`, `node-pty`, `@parcel/watcher`, and `fs-native-extensions`),
+adds `node.exe` from nodejs.org with a checksum check, and writes
+`bb-server.cmd` (server) and `bb.cmd` (CLI) launchers into
+`packages/bb-app/dist/portable-win-x64/`. The launchers store data in a
+`data` folder next to them via `BB_DATA_DIR`. Unpack the zip on Windows 10
+x64 or newer and run `bb-server.cmd`. See
+[docs/platform-support.md](../../docs/platform-support.md) for the native
+Windows host caveats.
+
 `npx bb-app@latest` downloads the published `bb-app` package, starts the server and
 local host daemon, and serves the web app. It stores bb-managed state under
 `~/.bb/` by default. If either managed child process exits unexpectedly, the

@@ -42,6 +42,12 @@ The native Windows host is alpha. It runs from the Windows desktop installer or
   with the PowerShell command; its daemon runs in the signed-in user's session
 - the server cannot be moved to a Windows machine
 
+For an install-free form of the server and CLI, bb ships a portable zip: it
+bundles `node.exe`, `bb-app`, and win32-x64 native modules; run
+`pnpm exec turbo run portable:win --filter=bb-app` from any machine with npm
+and network access, or see
+[`packages/bb-app/README.md`](../packages/bb-app/README.md).
+
 ## Mobile app
 
 [`apps/mobile`](../apps/mobile) is the iOS and Android client for a bb server.
